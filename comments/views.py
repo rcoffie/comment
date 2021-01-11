@@ -13,6 +13,7 @@ def Home(request):
 
 def PostDetail(request, id):
   post = Post.objects.get(id=id)
-  context = {'post':post}
+  comments = Comment.objects.filter(post=post).order_by('-id')
+  context = {'post':post,'comments':comments}
 
   return render(request,'comments/detail.html',context)

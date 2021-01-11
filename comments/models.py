@@ -24,3 +24,16 @@ class Post(models.Model):
 
   def __str__(self):
     return self.title
+
+
+
+
+class Comment(models.Model):
+  post = models.ForeignKey(Post, on_delete=models.DO_NOTHING)
+  user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+  content = models.TextField(max_length=160)
+  date_posted = models.DateTimeField(auto_now_add=True)
+
+
+
+  
