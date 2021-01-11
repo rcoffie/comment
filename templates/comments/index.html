@@ -19,9 +19,9 @@
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong>{{ post.author }}</strong> <small>@johnsmith</small> <small>{{ post.created}}</small>
+                  <strong> <a href="{% url 'detail' post.id %}">  {{ post.author }} </a> </strong> <small>@johnsmith</small> <small>{{ post.created}}</small>
                   <br>
-                 {{post.body}}
+                 {{post.body | truncatewords:15 }}
                 </p>
               </div>
               <nav class="level is-mobile">
