@@ -82,10 +82,38 @@
 
       </div>
 
-      {% if comments %}
-      {% for comment in comments %}
-      <div class="column is-8">
 
+
+      <div class="column is-8">
+        <h4>Post Comment</h4>
+        <form action="{% url 'detail' post.id %}" method="Post">
+          {% csrf_token  %}
+        <article class="media">
+         
+          <div class="media-content">
+            <div class="field">
+              <p class="control">
+                <textarea class="textarea" placeholder="Add a comment..." name='content'></textarea>
+              </p>
+            </div>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <a class="button is-info" type="submit" >Submit</a>
+                </div>
+              </div>
+              
+            </nav>
+          </div>
+        </article>
+      </form>
+      </div>
+
+  
+      <div class="column is-8">
+        <p>{{ comments.count }} Comment{{ comments|pluralize }}</p>
+        {% if comments %}
+        {% for comment in comments %}
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
@@ -95,11 +123,11 @@
           <div class="media-content">
             <div class="content">
               <p>
-                <strong>Barbara Middleton</strong>
+                <strong>{{ comment.user }}</strong>
                 <br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
+                {{ comment.content }}
                 <br>
-                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                <small><a>Like</a> · <a>Reply</a> {{ comment.date_posted }}</small>
               </p>
             </div>
         
@@ -133,12 +161,13 @@
           
           </div>
         </article>
+        {% endfor %}
+        {% endif %}
     
 
        
       </div>
-      {% endfor %}
-      {% endif %}
+    
 
     </div>
   </div>
