@@ -85,7 +85,8 @@
 
 
       <div class="column is-8">
-        <h4>Post Comment</h4>
+        <p>{{ comments.count }} Comment{{ comments|pluralize }}</p>
+      
         <form action="{% url 'detail' post.id %}" method="Post">
           {% csrf_token  %}
         <article class="media">
@@ -93,13 +94,13 @@
           <div class="media-content">
             <div class="field">
               <p class="control">
-                <textarea class="textarea" placeholder="Add a comment..." name='content'></textarea>
+                <textarea class="textarea" placeholder="Add a comment..." name='content' required></textarea>
               </p>
             </div>
             <nav class="level">
               <div class="level-left">
                 <div class="level-item">
-                  <a class="button is-info" type="submit" >Submit</a>
+                  <button class='button is-info' type="submit"> Submit</button>
                 </div>
               </div>
               
